@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: jack-billings-com-tls
+spec:
+  secretName: jack-billings-com
+  issuerRef: 
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: jack-billings.com
+  dnsNames:
+    - jack-billings.com
+    - www.jack-billings.com
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - jack-billings.com
+          - www.jack-billings.com
